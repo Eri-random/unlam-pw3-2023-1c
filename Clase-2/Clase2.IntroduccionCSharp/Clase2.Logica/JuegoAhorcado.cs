@@ -1,4 +1,6 @@
-﻿namespace Clase2.Logica
+﻿using Microsoft.VisualBasic;
+
+namespace Clase2.Logica
 {
     public class JuegoAhorcado
     {
@@ -78,22 +80,22 @@
         }
 
         public static string PalabraPosible(string mood){
+
             string palabraElegida;
 
             if (mood.ToUpper() == "P"){
 
-                do{
-                    palabraElegida = PalabrasPosibles[new Random().Next(PalabrasPosibles.Count())];
+                List<string> listaPrincipiante = PalabrasPosibles.Where(palabra => palabra.Length <= 6).ToList();
 
-                } while (palabraElegida.Length > 6);
+                palabraElegida = listaPrincipiante[new Random().Next(PalabrasPosibles.Count())];
 
             }
-            else{
-                do
-                {
-                    palabraElegida = PalabrasPosibles[new Random().Next(PalabrasPosibles.Count())];
+            else
+            {
+                List<string> listaPrincipiante = PalabrasPosibles.Where(palabra => palabra.Length > 6).ToList();
 
-                } while (palabraElegida.Length <= 6);
+                palabraElegida = listaPrincipiante[new Random().Next(PalabrasPosibles.Count())];
+
             }
 
             return palabraElegida;
