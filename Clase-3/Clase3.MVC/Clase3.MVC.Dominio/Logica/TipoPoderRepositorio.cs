@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clase3.MVC.Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Clase3.MVC.Dominio.Logica
     {
         List<Entidades.TipoPoder> ObtenerTodos();
         void Agregar(Entidades.TipoPoder poder);
+        Entidades.TipoPoder ObtenerPoderPorId(int Id);
         void Eliminar(int id);
     }
     public class TipoPoderRepositorio : ITipoPoderRepositorio
@@ -61,6 +63,13 @@ namespace Clase3.MVC.Dominio.Logica
             {
                 _tiposPoderes.Remove(tipoPoder);
             }
+        }
+
+        TipoPoder ITipoPoderRepositorio.ObtenerPoderPorId(int Id)
+        {
+           TipoPoder poder = _tiposPoderes.Find(x => x.Id == Id)!;
+
+            return poder;
         }
     }
 }

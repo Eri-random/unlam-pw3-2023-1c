@@ -1,0 +1,31 @@
+﻿@model Clase3.MVC.Dominio.Entidades.Poder;
+@{
+    var poderes = ViewBag.poderes;
+}
+
+<h1>Agregar Poder</h1>
+
+@using (Html.BeginForm("Agregar", "Poderes", FormMethod.Post))
+{
+    <div class="d-flex flex-column gap-2 w-25">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.TextBoxFor(model => model.Nombre)
+
+        <label>Tipo Poder</label>
+       <select name="Tipo" id="Tipo">
+           @foreach(var p in poderes){
+               <option value="@p.Id">@p.Nombre</option>
+           }
+       </select> 
+
+
+        @Html.LabelFor(model => model.Daño)
+        @Html.TextBoxFor(model => model.Daño)
+
+    </div>
+
+    <div class="mt-2">
+        <input class="btn btn-success w-25" type="submit" value="Agregar" />
+    </div>
+    
+}

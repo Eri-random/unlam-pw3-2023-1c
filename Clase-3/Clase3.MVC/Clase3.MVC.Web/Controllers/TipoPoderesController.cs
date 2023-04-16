@@ -45,6 +45,13 @@ namespace Clase3.MVC.Web.Controllers
         }
 
         [HttpGet]
+        public IActionResult Detalle(int id)
+        {
+            TipoPoder tipoPoder = _tipoPoderRepositorio.ObtenerPoderPorId(id);
+            return View(tipoPoder);
+        }
+
+        [HttpGet]
         public IActionResult Eliminar(int id)
         {
             _tipoPoderRepositorio.Eliminar(id);

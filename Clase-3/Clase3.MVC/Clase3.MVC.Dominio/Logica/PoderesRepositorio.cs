@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clase3.MVC.Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,21 +11,29 @@ namespace Clase3.MVC.Dominio.Logica
     {
         List<Entidades.Poder> ObtenerTodos();
         void Agregar(Entidades.Poder poder);
+
+        Entidades.Poder ObtenerPoderPorId(int Id);
+
         void Eliminar(int id);
     }
     public class PoderesRepositorio : IPoderesRepositorio
     {
         private static List<Entidades.Poder> _poderes = new List<Entidades.Poder>();
 
+        public PoderesRepositorio()
+        {
+            Inicializar();
+        }
 
-        //public void Inicializar()
-        //{
-        //    _poderes.Clear();
-        //    _poderes.Add(new Entidades.Poder() { Id = 1, Nombre = "Rayo", Tipo = new Entidades.TipoPoder() { Id = 1, Nombre = "Ataque" }, Daño = 100 });
-        //    _poderes.Add(new Entidades.Poder() { Id = 2, Nombre = "Lanza", Tipo = new Entidades.TipoPoder() { Id = 1, Nombre = "Ataque" }, Daño = 50 });
-        //    _poderes.Add(new Entidades.Poder() { Id = 3, Nombre = "Escudo", Tipo = new Entidades.TipoPoder() { Id = 2, Nombre = "Defensa" }, Daño = 0 });
-        //    _poderes.Add(new Entidades.Poder() { Id = 4, Nombre = "Curar", Tipo = new Entidades.TipoPoder() { Id = 3, Nombre = "Curacion" }, Daño = 0 });
-        //}
+
+        public void Inicializar()
+        {
+            _poderes.Clear();
+            _poderes.Add(new Entidades.Poder() { Id = 1, Nombre = "Rayo", Tipo = new Entidades.TipoPoder() { Id = 1, Nombre = "Ataque" }, Daño = 100 });
+            _poderes.Add(new Entidades.Poder() { Id = 2, Nombre = "Lanza", Tipo = new Entidades.TipoPoder() { Id = 1, Nombre = "Ataque" }, Daño = 50 });
+            _poderes.Add(new Entidades.Poder() { Id = 3, Nombre = "Escudo", Tipo = new Entidades.TipoPoder() { Id = 2, Nombre = "Defensa" }, Daño = 0 });
+            _poderes.Add(new Entidades.Poder() { Id = 4, Nombre = "Curar", Tipo = new Entidades.TipoPoder() { Id = 3, Nombre = "Curacion" }, Daño = 0 });
+        }
         public List<Entidades.Poder> ObtenerTodos()
         {
             return _poderes;
@@ -32,7 +41,10 @@ namespace Clase3.MVC.Dominio.Logica
 
         public void Agregar(Entidades.Poder poder)
         {
+            poder.Id = ObtenerProxId();
+
             _poderes.Add(poder);
+
         }
 
         public void Eliminar(int id)
@@ -42,6 +54,18 @@ namespace Clase3.MVC.Dominio.Logica
             {
                 _poderes.Remove(poder);
             }
+        }
+
+        Poder IPoderesRepositorio.ObtenerPoderPorId(int Id) { 
+        
+            Poder poder = _poderes.Find(x => x.Id == Id)!;
+
+            return poder;
+        }
+
+        private int ObtenerProxId()
+        {
+            return _poderes.Count() + 1;
         }
     }
 }
