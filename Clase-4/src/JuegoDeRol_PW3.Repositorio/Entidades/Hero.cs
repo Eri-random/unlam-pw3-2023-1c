@@ -9,7 +9,7 @@ namespace JuegoDeRol_PW3.Repositorio.Entidades
 {
     public class Hero
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         [Required (ErrorMessage = "El nombre es requerido")]
         public string Nombre { get; set; }

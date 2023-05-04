@@ -1,7 +1,18 @@
-﻿@model List<JuegoDeRol_PW3.Repositorio.Entidades.Hero>
+﻿@model JuegoDeRol_PW3.Web.Models.HeroesEditorialesViewModel
 @{
     ViewData["Title"] = "Listar";
 }
+
+<form class="container d-flex justify-content-end gap-2" method="get" enctype="multipart/form-data" asp-action="Filtrar" asp-controller="Hero">
+    <select name="id">
+        <option value="0" selected>Default</option>
+        @foreach(var editorial in Model.editoriales){
+        <option value="@editorial.Key">@editorial.Value</option>
+        }
+    </select>
+
+    <button type="submit" class="btn btn-dark">Filtrar</button>
+</form>
 
 <table class="table bg-white container">
     <thead>
@@ -16,14 +27,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.heroes)
     {
         <tr>
             <th scope="row">@item.Id</th>
             <td>@item.Nombre</td>
             <td>@item.Creador</td>
             <td>@item.FechaAlta</td>
-            <td>@item.Editorial <p>TAREA:Hacer que figure el nombre, <br>y programar que filtre por Editorial</p></td>
+            <td>@Model.editoriales[@item.Editorial]</td>
+        
             <td><a href="/Hero/Detalle/@item.Id">ver</a></td>
 
         </tr>

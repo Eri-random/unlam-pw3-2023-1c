@@ -16,5 +16,6 @@ namespace JuegoDeRol_PW3.Servicio.Interfaces
         List<Editorial> ObtenerEditoriales();
         Editorial ObtenerEditorialPorId(int editorial);
         Hero ObtenerHeroePorId(int idNum);
+        Dictionary<int, string> ObtenerNombresDeEditoriales(List<Editorial> editoriales);
     }
 }

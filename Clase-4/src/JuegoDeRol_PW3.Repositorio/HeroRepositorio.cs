@@ -12,7 +12,7 @@ namespace JuegoDeRol_PW3.Repositorio
     {
         public void AgregarHeroe(Hero hero)
         {
-            int? idUltimo = ObtenerUltimoId();
+            int idUltimo = ObtenerUltimoId();
             idUltimo++;
 
             hero.Id= idUltimo;
@@ -21,9 +21,9 @@ namespace JuegoDeRol_PW3.Repositorio
 
         }
 
-        private int? ObtenerUltimoId()
+        private int ObtenerUltimoId()
         {
-            int? ultimo = HeroPseudoDatabase.GetHeroes().LastOrDefault().Id;
+            int ultimo = HeroPseudoDatabase.GetHeroes().LastOrDefault().Id;
             return ultimo;
         }
 

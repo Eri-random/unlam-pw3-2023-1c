@@ -16,7 +16,14 @@ namespace JuegoDeRol_PW3.Repositorio
                        FechaAlta = DateOnly.Parse("27/05/1939"),
                        Descripcion = "Bruno Díaz, Alias Batman, Es un legendario vigilante que lucha contra el crimen en Ciudad Gótica, y un miembro fundador de la Liga de la Justicia. Él es el mentor de Robin, y es responsable de asignar las misiones a El Equipo",
                        Imagen = "\\Batman.jpg",
-                       Editorial= 2} 
+                       Editorial= 2},
+             new Hero { Id =  2,
+                       Nombre = "Spider-Man",
+                       Creador = " Stan Lee y Steve Ditko",
+                       FechaAlta = DateOnly.Parse("15/05/2002"),
+                       Descripcion = "Luego de sufrir la picadura de una araña genéticamente modificada, un estudiante de secundaria tímido y torpe adquiere increíbles capacidades como arácnido",
+                       Imagen = "\\hombrearaña.jpg",
+                       Editorial= 1}
                      };
 
         public static List<Hero> GetHeroes() => heroes;

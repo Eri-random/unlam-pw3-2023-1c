@@ -2,6 +2,7 @@
 using JuegoDeRol_PW3.Servicio.Interfaces;
 using JuegoDeRol_PW3.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Razor.Language;
 
 namespace JuegoDeRol_PW3.Web.Controllers
 {
@@ -16,14 +17,45 @@ namespace JuegoDeRol_PW3.Web.Controllers
 
         public IActionResult Listar()
         {
-            List<Hero> heores = _servicio.ListarHeroes();
-            return View(heores);
+            List<Hero> heroes = _servicio.ListarHeroes();
+
+            List<Editorial> editoriales = _servicio.ObtenerEditoriales();
+
+            HeroesEditorialesViewModel heroesEditorialesViewModel = new HeroesEditorialesViewModel();
+            heroesEditorialesViewModel.heroes = heroes;
+
+            heroesEditorialesViewModel.editoriales = _servicio.ObtenerNombresDeEditoriales(editoriales);
+
+            return View(heroesEditorialesViewModel);
         }
 
+        public IActionResult Filtrar(int id)
+        {
+            List<Hero> heroes;
+
+            if (id == 0){
+                heroes = _servicio.ListarHeroes();
+            }
+            else{
+                heroes = _servicio.ListarHeroes().Where(x => x.Editorial == id).ToList();
+            }
+
+            List<Editorial> editoriales = _servicio.ObtenerEditoriales();
+
+            HeroesEditorialesViewModel heroesEditorialesViewModel = new HeroesEditorialesViewModel();
+            heroesEditorialesViewModel.heroes = heroes;
+
+            heroesEditorialesViewModel.editoriales = _servicio.ObtenerNombresDeEditoriales(editoriales);
+
+            return View("Listar",heroesEditorialesViewModel);
+        }
+
+        [HttpGet]
         public IActionResult Detalle(int id) {
 
             
             Hero heroe = _servicio.ObtenerHeroePorId(id);
+            
             Editorial editorial = _servicio.ObtenerEditorialPorId(heroe.Editorial);
 
             //Estos dos objetos no se pueden enviar a la vista, solo se envía un objeto
