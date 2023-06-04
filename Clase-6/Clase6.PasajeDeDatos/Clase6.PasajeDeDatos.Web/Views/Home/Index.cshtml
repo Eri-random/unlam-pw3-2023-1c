@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ColorViewModel>;
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +7,18 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div>@ViewBag.Message</div>
+
+<h1>Selecciona un color de fondo</h1>
+<form method="post" action="/home/index">
+    <div>
+        <ul>
+            @foreach (var color in Model.OrderBy(s => s.Nombre).ToList())
+            {
+                <li>@color.Nombre</li>
+                <input type="submit" value="Seleccionar" name="@color.Valor" />
+            }
+        </ul>
+    </div>
+</form>

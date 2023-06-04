@@ -10,7 +10,22 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Clase6.PasajeDeDatos.Web.styles.css" asp-append-version="true" />
+    @{
+        string colorSeleccionado = HttpContextAccessor.HttpContext.Session.GetString("ColorSeleccionado");
+        if (colorSeleccionado != null)
+        {
+            <style>
+                body {
+                    background-color:@Html.Raw(colorSeleccionado);
+                }
+            </style>
+
+        }
+
+    }
 </head>
+
+   
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
