@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<PW320231CEFIslaDelTesoroContext>();
+builder.Services.AddScoped<IslaDelTesoroContext>();
 
 var app = builder.Build();
 

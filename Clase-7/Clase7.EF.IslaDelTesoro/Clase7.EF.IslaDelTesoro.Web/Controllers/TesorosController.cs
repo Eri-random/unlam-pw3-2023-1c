@@ -5,8 +5,8 @@ namespace Clase7.EF.IslaDelTesoro.Web.Controllers
 {
     public class TesorosController : Controller
     {
-        private PW320231CEFIslaDelTesoroContext _context;
-        public TesorosController(PW320231CEFIslaDelTesoroContext context)
+        private IslaDelTesoroContext _context;
+        public TesorosController(IslaDelTesoroContext context)
         {
             _context = context;
         }
