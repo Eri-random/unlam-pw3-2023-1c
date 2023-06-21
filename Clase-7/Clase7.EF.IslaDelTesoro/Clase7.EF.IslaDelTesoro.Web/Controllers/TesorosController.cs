@@ -38,6 +38,7 @@ namespace Clase7.EF.IslaDelTesoro.Web.Controllers
             var tesoro = _context.Tesoros.Find(id);
             if (tesoro != null)
             {
+                ViewBag.Ubicaciones = _context.Ubicacions.ToList();
                 return View(tesoro);
             }
             return RedirectToAction("Index");
@@ -76,6 +77,7 @@ namespace Clase7.EF.IslaDelTesoro.Web.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Ubicaciones = _context.Ubicacions.ToList();
             return View(tesoro);
 
         }

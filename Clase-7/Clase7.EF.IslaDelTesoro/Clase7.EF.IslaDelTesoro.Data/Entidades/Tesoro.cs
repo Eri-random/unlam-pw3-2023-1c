@@ -11,5 +11,7 @@ namespace Clase7.EF.IslaDelTesoro.Data.Entidades
         public string? ImagenUrl { get; set; }
         public int? Ubicacion { get; set; }
         public decimal? Valor { get; set; }
+
+        public virtual Ubicacion? UbicacionNavigation { get; set; }
     }
 }

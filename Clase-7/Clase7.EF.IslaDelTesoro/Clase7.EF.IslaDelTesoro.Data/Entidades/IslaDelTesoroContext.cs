@@ -47,6 +47,11 @@ namespace Clase7.EF.IslaDelTesoro.Data.Entidades
                     .IsUnicode(false);
 
                 entity.Property(e => e.Valor).HasColumnType("decimal(10, 2)");
+
+                entity.HasOne(d => d.UbicacionNavigation)
+                    .WithMany(p => p.Tesoros)
+                    .HasForeignKey(d => d.Ubicacion)
+                    .HasConstraintName("fk_ubicacion");
             });
 
             modelBuilder.Entity<Ubicacion>(entity =>
